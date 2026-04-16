@@ -1,0 +1,56 @@
+# dependencies
+node_modules
+
+# testing
+coverage
+
+# next.js
+.next/
+out/
+build
+
+# misc
+.DS_Store
+.temp
+
+# debug
+pnpm-debug.log*
+
+# local env files
+.env
+.env.local
+.env.dev
+.env.development.local
+.env.test
+.env.test.local
+.env.production.local
+.env.prod
+
+# turbo
+.turbo
+
+# vercel
+.vercel
+.swc
+
+# Editor directories and files
+.vscode/*
+.idea/*
+.run/*
+
+# build output
+dist/*
+*.d.ts
+*.d.ts.map
+
+# storybook
+build-storybook.log
+storybook-static
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/
+
+# claude 
+.claude

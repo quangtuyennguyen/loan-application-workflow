@@ -1,0 +1,71 @@
+@theme {
+  /* ── Base ── */
+  --color-base-white: #FFFFFF;
+  --color-base-black: #18181B;
+
+  /* ── Gray ── */
+  --color-gray-50:  #FAFAFA;
+  --color-gray-100: #F4F4F5;
+  --color-gray-200: #E4E4E7;
+  --color-gray-300: #D1D1D6;
+  --color-gray-400: #A0A0AB;
+  --color-gray-500: #70707B;
+  --color-gray-600: #52525C;
+  --color-gray-700: #3F3F46;
+  --color-gray-800: #27272A;
+  --color-gray-900: #18181B;
+
+  /* ── Primary (teal) ── */
+  --color-primary-25:  #F0FDFC;
+  --color-primary-50:  #CCFBF4;
+  --color-primary-100: #99F6E8;
+  --color-primary-200: #5EEAD4;
+  --color-primary-300: #2DD4BF;
+  --color-primary-400: #14B8A6;
+  --color-primary-500: #0D9488;
+  --color-primary-600: #0F766E;
+  --color-primary-700: #115E59;
+  --color-primary-800: #134E4A;
+  --color-primary-900: #042F2E;
+
+  /* ── Error ── */
+  --color-error-50:  #FFF1F1;
+  --color-error-100: #FFE4E4;
+  --color-error-200: #FECACA;
+  --color-error-300: #FCA5A5;
+  --color-error-400: #F87171;
+  --color-error-500: #EF4444;
+  --color-error-600: #DC2626;
+  --color-error-700: #B91C1C;
+  --color-error-800: #991B1B;
+  --color-error-900: #7F1D1D;
+
+  /* ── Success ── */
+  --color-success-50:  #ECFDF5;
+  --color-success-100: #D1FAE5;
+  --color-success-300: #6EE7B7;
+  --color-success-500: #10B981;
+  --color-success-600: #059669;
+  --color-success-700: #047857;
+
+  /* ── Warning ── */
+  --color-warning-50:  #FFFBEB;
+  --color-warning-100: #FEF3C7;
+  --color-warning-300: #FCD34D;
+  --color-warning-500: #F59E0B;
+  --color-warning-600: #D97706;
+  --color-warning-700: #B45309;
+
+  /* ── Border Radius ── */
+  --radius-xs:   4px;    /* checkboxes, badges */
+  --radius-sm:   6px;    /* small tags */
+  --radius-md:   8px;    /* inputs, buttons, cards */
+  --radius-lg:   12px;   /* modals, panels */
+  --radius-full: 9999px;
+
+  /* ── Shadows ── */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.10);
+  --shadow-md: 0 4px 8px -2px rgb(0 0 0 / 0.10);
+  --shadow-lg: 0 12px 16px -4px rgb(0 0 0 / 0.10);
+}

@@ -1,20 +1,46 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "../../lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-50",
+  [
+    "inline-flex items-center justify-center font-medium rounded-md",
+    "transition-colors duration-200",
+    "focus-visible:outline-none focus-visible:ring-4",
+    "disabled:pointer-events-none",
+  ],
   {
     variants: {
       variant: {
-        primary: "bg-black text-white hover:opacity-90",
-        secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200",
-        outline: "border border-gray-300 bg-white hover:bg-gray-50",
+        primary: [
+          "bg-primary-500 text-base-white border border-primary-500 shadow-xs",
+          "hover:bg-primary-600 hover:border-primary-600",
+          "focus-visible:ring-primary-100",
+          "disabled:bg-primary-200 disabled:border-primary-200",
+        ],
+        secondary: [
+          "bg-base-white text-gray-700 border border-gray-300 shadow-xs",
+          "hover:bg-gray-50 hover:text-gray-800",
+          "focus-visible:ring-gray-100",
+          "disabled:text-gray-300 disabled:border-gray-200",
+        ],
+        outline: [
+          "bg-base-white text-gray-700 border border-gray-300 shadow-xs",
+          "hover:bg-gray-50 hover:text-gray-800",
+          "focus-visible:ring-gray-100",
+          "disabled:text-gray-300 disabled:border-gray-200",
+        ],
+        destructive: [
+          "bg-error-600 text-base-white border border-error-600 shadow-xs",
+          "hover:bg-error-700 hover:border-error-700",
+          "focus-visible:ring-error-100",
+          "disabled:bg-error-200 disabled:border-error-200",
+        ],
       },
       size: {
-        sm: "h-8 px-3",
-        md: "h-10 px-4",
-        lg: "h-11 px-6",
+        sm: "h-8 px-3 text-sm gap-1.5",
+        md: "h-10 px-4 text-sm gap-2",
+        lg: "h-12 px-4 text-base gap-2",
       },
     },
     defaultVariants: {

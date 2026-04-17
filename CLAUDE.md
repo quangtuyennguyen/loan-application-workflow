@@ -27,7 +27,8 @@ cd packages/ui && pnpm generate:component
 ```
 
 **Ports:**
-- `apps/platform` Next.js app: `3001`
+- `apps/platform` Next.js app: `3000`
+- `apps/server` Express API: `3001`
 - `packages/ui` Storybook: `6005`
 - `apps/platform` Storybook: `6006`
 
@@ -48,6 +49,7 @@ cd packages/ui && pnpm generate:component
 | App | Path | Purpose |
 |---|---|---|
 | `platform` | `apps/platform/` | Next.js consumer app; imports components from `@tuyennq/ui` |
+| `server` | `apps/server/` | Express REST API for loan applications (`/api/v1/applications`) |
 
 ### Component Library (`packages/ui`)
 

@@ -42,6 +42,7 @@ pnpm-debug.log*
 dist/*
 *.d.ts
 *.d.ts.map
+tsconfig.tsbuildinfo
 
 # storybook
 build-storybook.log
@@ -54,3 +55,5 @@ storybook-static
 
 # claude 
 .claude
+apps/server
+notes.txt

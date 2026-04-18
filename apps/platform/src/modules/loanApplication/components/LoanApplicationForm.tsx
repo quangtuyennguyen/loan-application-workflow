@@ -1,12 +1,13 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { Button } from '@tuyennq/ui/src/components/button/Button';
+import { isApiError } from '@/apiHelpers/apiError';
 import { HookFormInputField } from '@/components/form/HookFormInputField';
 import { useSubmitLoanApplicationMutation } from '@/modules/loanApplication/useSubmitLoanApplicationMutation';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@tuyennq/ui/src/components/button/Button';
+import { useRouter } from 'next/navigation';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
 
 // TODO: If the form validation schema/logic grows more complex
 // move this into a dedicated file (e.g. loanApplicationSchema.ts)
@@ -36,8 +37,8 @@ type LoanSchema = z.infer<typeof loanSchema>;
 
 export function LoanApplicationForm() {
   const router = useRouter();
-  const { mutate, isPending, isError, error } = useSubmitLoanApplicationMutation();
-  const { reset, control, handleSubmit } = useForm<LoanSchema>({
+  const { mutate, isPending } = useSubmitLoanApplicationMutation();
+  const { reset, control, handleSubmit, setError, formState: { errors } } = useForm<LoanSchema>({
     resolver: zodResolver(loanSchema),
     defaultValues: {
       fullName: '',
@@ -56,6 +57,15 @@ export function LoanApplicationForm() {
       onSuccess: (response) => {
         reset();
         router.push(`/loan-application/${response.id}`);
+      },
+      onError: (err) => {
+        if (isApiError(err)) {
+          const message =
+            (err.errors && Object.values(err.errors).flat()[0]) ??
+            err.message ??
+            'Something went wrong. Please try again.';
+          setError('root', { message });
+        }
       },
     });
   });
@@ -95,11 +105,11 @@ export function LoanApplicationForm() {
         placeholder="10000"
         disabled={isPending}
       />
-      
+
       {/* This error is from the backend (e.g. server error), not a client-side validation message */}
-      {isError && (
+      {errors.root && (
         <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-          {error.message}
+          {errors.root.message}
         </div>
       )}
 

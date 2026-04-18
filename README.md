@@ -65,12 +65,11 @@ Open [http://localhost:3000](http://localhost:3000) to use the loan application 
 - **Authentication** — would add auth to the Next.js app, then use `iron-session` for encrypted cookie sessions backed by DynamoDB as the session store.
 - **Accessibility** — a full a11y audit has not been done; would review the entire app using Storybook's built-in `addon-a11y`, which flags issues per component during development. As the app scales with more complex components, would adopt Base UI or Radix UI to get correct keyboard interaction and a11y semantics by default.
 - **No unit tests** — current Storybook tests cover both visual and interaction scenarios, which is sufficient for now. Unit tests will be added as more logic, helper functions, and custom hooks are introduced.
-- **Error handling helper** — the current `'error' in result` pattern could be extracted into an `isApiError()` type guard for better readability and to centralize the error shape assumption across the codebase.
 - **No Playwright E2E tests** — would add Playwright for real integration testing across the full user flow.
 - **No CI/CD pipeline** — would set up a GitHub Actions workflow that: runs lint, type-check, and Storybook tests on every PR; uploads coverage to Codecov for visibility; and auto-deploys to AWS on merge to `main` using infrastructure as code (e.g. SST).
 - **No visual regression gating** — would set up Chromatic for visual regression testing and require it to pass as a branch-protection check before a PR can be merged.
 - **Fetch wrapper** — when authentication is added, a centralized fetch wrapper should manage tokens, error handling, and response parsing to avoid scattering that logic across server actions and functions.
-- **Webpack instead of Turbopack** — `next dev` currently uses `--webpack` because Turbopack lacks complete support for monorepo (Turborepo) setups; should switch to Turbopack (the default) once stable — it replaces Webpack entirely as the bundler, with significantly faster startup, HMR, and transforms across the full dev pipeline.
+- **Webpack instead of Turbopack** — `next dev` currently uses `--webpack` because Turbopack lacks complete support for monorepo (Turborepo) setups; should switch to Turbopack (the default) once it has more docs to follow — it replaces Webpack entirely as the bundler, with significantly faster startup, HMR, and transforms across the full dev pipeline.
 - **Icon management** — pre-converting SVGs to typed React components in a `packages/shared-assets` package (organized by category, using `currentColor`) eliminates SVG loaders, enables tree-shaking, and keeps icons consistent across all apps.
 
 ### Backend

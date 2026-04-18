@@ -1,4 +1,5 @@
 import { queryOptions, useQuery } from '@tanstack/react-query';
+import { isApiError } from '@/apiHelpers/apiError';
 import { getLoanApplicationAction } from '@/modules/loanApplication/server/loanApplicationActions';
 import { loanApplicationQueryKeys } from '@/modules/loanApplication/loanApplicationQueryKeys';
 
@@ -7,7 +8,7 @@ export const loanApplicationQueryOptions = (id: string) =>
     queryKey: loanApplicationQueryKeys.detail(id),
     queryFn: async () => {
       const result = await getLoanApplicationAction(id);
-      if ('error' in result) throw new Error(result.error);
+      if (isApiError(result)) throw new Error(result.message);
       return result;
     },
     enabled: !!id,

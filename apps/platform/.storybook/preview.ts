@@ -1,20 +1,24 @@
-import type { Preview } from '@storybook/nextjs-vite'
+import '../app/globals.css';
+
+import type { Preview } from '@storybook/nextjs-vite';
+import { defaultParameters } from '@tuyennq/storybook-config/preview';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+import { loanApplicationHandlers } from '../mocks/handlers';
+
+initialize({ onUnhandledRequest: 'bypass' });
 
 const preview: Preview = {
+  loaders: [mswLoader],
   parameters: {
-    controls: {
-      matchers: {
-       color: /(background|color)$/i,
-       date: /Date$/i,
+    ...defaultParameters,
+    nextjs: {
+      appDirectory: true,
+    },
+    msw: {
+      handlers: {
+        loanApplication: loanApplicationHandlers,
       },
     },
-
-    a11y: {
-      // 'todo' - show a11y violations in the test UI only
-      // 'error' - fail CI on a11y violations
-      // 'off' - skip a11y checks entirely
-      test: 'todo'
-    }
   },
 };
 

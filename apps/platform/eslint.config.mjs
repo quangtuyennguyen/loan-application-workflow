@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // MSW service worker is a generated file
+    "public/mockServiceWorker.js",
   ]),
   ...storybook.configs["flat/recommended"]
 ]);

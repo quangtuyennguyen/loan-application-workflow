@@ -1,10 +1,10 @@
+// Vitest config for running Storybook stories as browser tests via @storybook/addon-vitest.
+// Not used by Next.js — this is a separate test pipeline that runs against the Storybook build.
+
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-
 import { defineConfig } from 'vitest/config';
-
 import { storybookTest } from '@storybook/addon-vitest/vitest-plugin';
-
 import { playwright } from '@vitest/browser-playwright';
 
 const dirname =

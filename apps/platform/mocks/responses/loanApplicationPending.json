@@ -1,0 +1,9 @@
+{
+  "id": "app-pending-123",
+  "status": "pending",
+  "fullName": "Jane Smith",
+  "email": "jane@example.com",
+  "annualIncome": 80000,
+  "loanAmount": 20000,
+  "createdAt": "2026-04-18T10:00:00.000Z"
+}

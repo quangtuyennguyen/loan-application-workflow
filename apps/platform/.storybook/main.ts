@@ -13,7 +13,7 @@ function getAbsolutePath(value: string) {
 }
 const config: StorybookConfig = {
   "stories": [
-    "../platform/*.mdx",
+    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   "addons": [
     getAbsolutePath('@chromatic-com/storybook'),
@@ -26,4 +26,5 @@ const config: StorybookConfig = {
     "../public"
   ]
 };
+
 export default config;

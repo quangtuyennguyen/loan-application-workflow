@@ -21,16 +21,23 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@tuyennq/storybook-config": "workspace:*",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitest/browser-playwright": "^4.1.4",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "msw": "^2.13.4",
+    "msw-storybook-addon": "^2.0.7",
+    "playwright": "^1.59.1",
     "typescript": "^5",
     "vite": "^8.0.8",
-    "vitest": "^4.1.4",
-    "playwright": "^1.59.1",
-    "@vitest/browser-playwright": "^4.1.4",
-    "@vitest/coverage-v8": "^4.1.4"
+    "vitest": "^4.1.4"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }

@@ -12,8 +12,8 @@ const colorVariants = {
   gray: {
     border: "border-gray-300",
     text: "text-gray-900",
-    focusBorder: "focus-within:border-gray-900",
-    focusRing: "focus-within:ring-gray-900",
+    focusBorder: "focus-within:border-gray-500",
+    focusRing: "focus-within:ring-gray-500",
     placeholder: "placeholder:text-gray-500",
     disabled: "disabled:text-gray-500",
     icon: "text-gray-500",
@@ -40,7 +40,7 @@ const colorVariants = {
 
 const inputWrapperStyles = cva(
   [
-    "flex gap-2 items-center rounded-md border bg-white transition-colors",
+    "flex gap-2 items-center rounded-md border transition-colors",
     "focus-within:outline-none focus-within:ring-1 focus-within:ring-offset-0",
   ],
   {
@@ -98,8 +98,6 @@ const attachedButtonPosition = {
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
   VariantProps<typeof inputWrapperStyles> {
-  size?: "sm" | "md" | "lg";
-  variant?: "gray" | "error" | "primary";
   leadingIcon?: React.ReactNode;
   trailingIcon?: React.ReactNode;
   leadingButton?: React.ReactNode;
@@ -129,10 +127,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const hasTrailingButton = Boolean(trailingButton);
 
     const cloneIconWithStyles = (icon: React.ReactNode) => {
-      if (React.isValidElement(icon)) {
+      if (React.isValidElement<React.HTMLAttributes<HTMLElement>>(icon)) {
         return React.cloneElement(icon, {
-          className: cn(iconStyles({ variant, size }), (icon.props as any)?.className),
-        } as any);
+          className: cn(iconStyles({ variant, size }), icon.props.className),
+        });
       }
       return icon;
     };
@@ -160,16 +158,16 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 
     return (
       <div className={cn("flex items-center", wrapperClassName)}>
-        {hasLeadingButton && leadingButton && React.isValidElement(leadingButton) && (
+        {hasLeadingButton && leadingButton && React.isValidElement<React.HTMLAttributes<HTMLElement>>(leadingButton) && (
           React.cloneElement(leadingButton, {
-            className: cn(attachedButtonPosition.leading, (leadingButton.props as any)?.className),
-          } as any)
+            className: cn(attachedButtonPosition.leading, leadingButton.props.className),
+          })
         )}
         {inputElement}
-        {hasTrailingButton && trailingButton && React.isValidElement(trailingButton) && (
+        {hasTrailingButton && trailingButton && React.isValidElement<React.HTMLAttributes<HTMLElement>>(trailingButton) && (
           React.cloneElement(trailingButton, {
-            className: cn(attachedButtonPosition.trailing, (trailingButton.props as any)?.className),
-          } as any)
+            className: cn(attachedButtonPosition.trailing, trailingButton.props.className),
+          })
         )}
       </div>
     );

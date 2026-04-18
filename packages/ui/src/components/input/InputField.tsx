@@ -15,7 +15,7 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
     return (
       <div className={cn('flex flex-col gap-1.5', className)}>
         {label && (
-          <label htmlFor={id} className="text-sm font-medium text-gray-700">
+          <label htmlFor={id} className="text-sm font-semibold text-gray-700">
             {label}
           </label>
         )}
@@ -26,9 +26,10 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(
           variant={error ? 'error' : variant ?? 'gray'}
           inputWrapperClassName={cn('w-full', props.inputWrapperClassName)}
         />
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <span className="break-words text-sm text-red-600">{error}</span>}
       </div>
     );
   }
 );
+
 InputField.displayName = 'InputField';

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { InputField } from "@tuyennq/ui/components/input/InputField";
-import { Button } from "@tuyennq/ui/components/button/Button";
+import { InputField } from "@/components/input/InputField";
+import { Button } from "@/components/button/Button";
 
 const meta: Meta<typeof InputField> = {
   title: "UI/InputField",
@@ -12,6 +12,7 @@ const meta: Meta<typeof InputField> = {
 };
 
 export default meta;
+
 type Story = StoryObj<typeof InputField>;
 
 export const Playground: Story = {};

@@ -53,7 +53,5 @@ storybook-static
 /playwright/.cache/
 /playwright/
 
-# claude 
-.claude
-apps/server
-notes.txt
+# claude settings/cache (not secrets, safe to commit)
+# .claude

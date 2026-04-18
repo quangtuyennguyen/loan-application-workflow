@@ -80,3 +80,5 @@ Open [http://localhost:3000](http://localhost:3000) to use the loan application 
 - **No unit tests** — not added for now; will be added as the service layer grows.
 - **No rate limiting or logging** — would add `express-rate-limit` on `POST` and a structured logging class that writes to file for observability.
 - **No API documentation** — would build a pipeline or script to auto-generate a Swagger UI from OpenAPI spec.
+
+See [`notes.txt`](notes.txt) for a quick-reference of the API endpoints and known issues.

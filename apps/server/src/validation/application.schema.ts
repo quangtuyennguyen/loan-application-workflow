@@ -4,7 +4,10 @@ import { z } from "zod";
 // stricter validation rules and practices for this schema.
 export const createApplicationSchema = z
   .object({
-    fullName: z.string().min(1000, 'Full name is required'),
+    fullName: z
+      .string()
+      .min(1, 'Full name is required')
+      .regex(/^[a-zA-Z\s'\-]+$/, 'Full name contains invalid characters'),
     email: z
       .string()
       .min(1, 'Email is required')

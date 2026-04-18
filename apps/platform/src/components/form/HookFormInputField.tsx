@@ -1,7 +1,7 @@
 'use client';
 
 import { Controller, type FieldValues, type Path, type Control } from 'react-hook-form';
-import { InputField, type InputFieldProps } from '@tuyennq/ui/components/input/InputField';
+import { InputField, type InputFieldProps } from '@tuyennq/ui/src/components/input/InputField';
 
 interface HookFormInputFieldProps<T extends FieldValues>
   extends Omit<InputFieldProps, 'name' | 'value' | 'onChange' | 'onBlur' | 'ref'> {

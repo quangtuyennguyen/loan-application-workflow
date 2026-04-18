@@ -10,6 +10,7 @@ export const loanApplicationQueryOptions = (id: string) =>
       if ('error' in result) throw new Error(result.error);
       return result;
     },
+    enabled: !!id,
   });
 
 export function useLoanApplicationQuery(id: string) {

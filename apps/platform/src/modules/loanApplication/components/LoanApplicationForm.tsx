@@ -4,10 +4,15 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Button } from '@tuyennq/ui/components/button/Button';
+import { Button } from '@tuyennq/ui/src/components/button/Button';
 import { HookFormInputField } from '@/components/form/HookFormInputField';
 import { useSubmitLoanApplicationMutation } from '@/modules/loanApplication/useSubmitLoanApplicationMutation';
 
+// TODO: If the form validation schema/logic grows more complex
+// move this into a dedicated file (e.g. loanApplicationSchema.ts)
+
+// TODO: In a real project, we'd need to discuss with the team about 
+// stricter validation rules and practices for this schema.
 const loanSchema = z
   .object({
     fullName: z.string().min(1, 'Full name is required'),
@@ -23,7 +28,7 @@ const loanSchema = z
       .positive('Loan amount must be greater than 0'),
   })
   .refine((d) => d.loanAmount <= d.annualIncome * 5, {
-    message: 'Loan amount cannot exceed 5× your annual income',
+    message: 'Loan amount cannot exceed 5 times your annual income',
     path: ['loanAmount'],
   });
 
@@ -42,8 +47,12 @@ export function LoanApplicationForm() {
     },
   });
 
-  const onSubmit = handleSubmit((data) => {
+  const onSubmit = handleSubmit((data, event) => {
+    event?.preventDefault();
+
     mutate(data, {
+      // TODO: Consider adding a progress bar indicator in the router wrapper
+      // when switching between pages, to provide users with visual feedback during navigation.
       onSuccess: (response) => {
         reset();
         router.push(`/loan-application/${response.id}`);
@@ -86,7 +95,8 @@ export function LoanApplicationForm() {
         placeholder="10000"
         disabled={isPending}
       />
-
+      
+      {/* This error is from the backend (e.g. server error), not a client-side validation message */}
       {isError && (
         <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
           {error.message}

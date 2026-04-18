@@ -1,3 +1,7 @@
+export interface ApiError {
+  error: string;
+}
+
 export interface LoanApplicationInput {
   fullName: string;
   email: string;

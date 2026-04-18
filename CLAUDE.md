@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Package Manager
 
-This repo uses **pnpm 9.0.0** exclusively. Do not use npm or yarn.
+This repo uses **pnpm 10.33.0** exclusively. Do not use npm or yarn.
 
 ## Commands
 
@@ -22,8 +22,6 @@ pnpm storybook                    # Start all Storybook instances
 pnpm exec turbo dev --filter=platform
 pnpm exec turbo storybook --filter=@tuyennq/ui
 
-# Generate a new component in @tuyennq/ui
-cd packages/ui && pnpm generate:component
 ```
 
 **Ports:**
@@ -43,12 +41,13 @@ cd packages/ui && pnpm generate:component
 | `@tuyennq/ui` | `packages/ui/` | React component library — source of truth for all components |
 | `@tuyennq/eslint-config` | `packages/eslint-config/` | Shared ESLint flat configs (`base`, `react-internal`, `next`) |
 | `@tuyennq/typescript-config` | `packages/typescript-config/` | Shared `tsconfig.json` bases |
+| `@tuyennq/storybook-config` | `packages/storybook-config/` | Shared Storybook preview config (`defaultParameters`, story sort) |
 
 ### Apps
 
 | App | Path | Purpose |
 |---|---|---|
-| `platform` | `apps/platform/` | Next.js consumer app; imports components from `@tuyennq/ui` |
+| `platform` | `apps/platform/` | Next.js consumer app; imports from `@tuyennq/ui` or uses its own components from `src/components/` |
 | `server` | `apps/server/` | Express REST API for loan applications (`/api/v1/applications`) |
 
 ### Component Library (`packages/ui`)
@@ -56,7 +55,7 @@ cd packages/ui && pnpm generate:component
 - Components live in `src/components/<name>/` with co-located `.stories.tsx` files.
 - Use **`class-variance-authority` (CVA)** for variant-based styling (see `Button` for the pattern).
 - Use the `cn()` utility from `src/lib/utils.ts` (combines `clsx` + `tailwind-merge`) for conditional classes.
-- Primitives are built on **`@base-ui/react`**.
+- Primitives will be built on **`@base-ui/react`** for complex components or those requiring full a11y semantics (not yet in use).
 - Tailwind CSS 4 is configured via `@import "tailwindcss"` in `src/index.css`.
 - Path alias `@/*` resolves to `./src/*` within this package.
 - Exports are direct source file paths: `"./src/*.tsx"` (no separate build step for the package).
@@ -65,7 +64,7 @@ cd packages/ui && pnpm generate:component
 
 Two separate Storybook instances:
 - `packages/ui`: `@storybook/react-vite` — stories for the component library, with Tailwind via Vite plugin.
-- `apps/platform`: `@storybook/nextjs-vite` — platform-level MDX docs; includes addon-a11y, addon-vitest, and Chromatic.
+- `apps/platform`: `@storybook/nextjs-vite` — platform-level stories; includes addon-a11y and addon-vitest.
 
 ### Next.js (`apps/platform`)
 

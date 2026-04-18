@@ -85,6 +85,35 @@ export const Submitting: Story = {
   },
 };
 
+// Server rejects a name containing digits/special characters with a 422.
+export const WithServerValidationError: Story = {
+  parameters: {
+    msw: {
+      handlers: {
+        loanApplication: [
+          http.post(`${API_BASE_URL}/api/v1/applications`, () =>
+            HttpResponse.json(
+              { message: 'Validation failed', errors: { fullName: ['Full name contains invalid characters'] } },
+              { status: 422 }
+            )
+          ),
+        ],
+      },
+    },
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+
+    await userEvent.type(canvas.getByLabelText('Full Name'), 'Jane123!');
+    await userEvent.type(canvas.getByLabelText('Email'), 'jane@example.com');
+    await userEvent.type(canvas.getByLabelText('Annual Income ($)'), '80000');
+    await userEvent.type(canvas.getByLabelText('Loan Amount ($)'), '20000');
+    await userEvent.click(canvas.getByRole('button', { name: /submit application/i }));
+
+    expect(await canvas.findByText('Full name contains invalid characters')).toBeInTheDocument();
+  },
+};
+
 // MSW returns a 500 so the mutation fails and the inline error message appears.
 export const WithServerError: Story = {
   parameters: {
